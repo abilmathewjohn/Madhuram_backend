@@ -19,6 +19,8 @@ const cartRoutes = require('./routes/cart');
 const taskRoutes = require('./routes/task');
 const uploadRoutes = require('./routes/upload');
 const employeeRoutes = require('./routes/employee');
+const activityRoutes = require('./routes/activity');
+const notificationRoutes = require('./routes/notification');
 
 
 
@@ -57,6 +59,8 @@ app.use('/cart', cartRoutes);
 app.use('/task', taskRoutes);
 app.use('/upload', uploadRoutes);
 app.use('/employee', employeeRoutes);
+app.use('/activity', activityRoutes);
+app.use('/notification', notificationRoutes);
 
 
 
