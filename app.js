@@ -21,6 +21,9 @@ const uploadRoutes = require('./routes/upload');
 const employeeRoutes = require('./routes/employee');
 const activityRoutes = require('./routes/activity');
 const notificationRoutes = require('./routes/notification');
+const paymentRoutes = require('./routes/payment');
+const reviewRoutes = require('./routes/review');
+const couponRoutes = require('./routes/coupon');
 
 
 
@@ -52,7 +55,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use('/', indexRouter);
 app.use('/auth', authRoutes);
-app.use('/users', userRoutes);
+app.use('/user', userRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/cart', cartRoutes);
@@ -61,6 +64,10 @@ app.use('/upload', uploadRoutes);
 app.use('/employee', employeeRoutes);
 app.use('/activity', activityRoutes);
 app.use('/notification', notificationRoutes);
+app.use('/payment', paymentRoutes);
+app.use('/reviews', reviewRoutes);
+app.use('/coupons', couponRoutes);
+
 
 
 
