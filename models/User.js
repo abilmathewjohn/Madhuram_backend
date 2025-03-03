@@ -8,9 +8,8 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     phone: { type: String, required: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ["admin", "user"], default: "user" },
+    role: { type: String, enum: ["admin", "user" ], default: "user" },
     profileImage: { type: String },
-
     address: {
       street: { type: String },
       street2: { type: String },
@@ -18,29 +17,17 @@ const userSchema = new mongoose.Schema(
       state: { type: String },
       postalCode: { type: String },
     },
-
-    location: {
-      latitude: { type: Number },
-      longitude: { type: Number },
-    },
-
     additionalInfo: { type: String },
   },
   { timestamps: true }
 );
 
-// Hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  try {
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-  } catch (err) {
-    next(err);
-  }
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
-// Method to compare password
 userSchema.methods.comparePassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };

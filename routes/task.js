@@ -55,7 +55,7 @@ router.get(
   async (req, res) => {
     try {
       const tasks = await Task.find()
-        .populate("assignedTo", "name employeeId") 
+        .populate("assignedTo", "name employeeId") // Show employee name & ID
         .populate("createdBy", "name");
 
       res.json(tasks);
