@@ -48,4 +48,36 @@ router.get("/user", authenticateToken, async (req, res) => {
   }
 });
 
+// Get Total Revenue for Admin
+router.get("/total-revenue", authenticateToken,  async (req, res) => {
+  try {
+    const totalRevenue = await Payment.aggregate([
+      { $match: { status: "Success" } },  // Only count successful payments
+      { $group: { _id: null, total: { $sum: "$amount" } } }
+    ]);
+
+    res.status(200).json({ totalRevenue: totalRevenue[0]?.total || 0 });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
+
+// Get All Payments (For Admin & Employee)
+router.get("/all", authenticateToken,  async (req, res) => {
+  try {
+    const payments = await Payment.find().populate("orderId userId");
+    
+    // Calculate total revenue from successful payments
+    const totalRevenue = payments.reduce((sum, payment) => 
+      payment.status === "Success" ? sum + payment.amount : sum, 
+      0
+    );
+
+    res.status(200).json({ payments, totalRevenue });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
+
+
 module.exports = router;

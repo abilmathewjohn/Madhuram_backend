@@ -8,16 +8,14 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     phone: { type: String, required: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ["admin", "user" ], default: "user" },
+    role: { type: String, enum: ["admin", "user"], default: "user" },
     profileImage: { type: String },
     address: {
       street: { type: String },
-      street2: { type: String },
       city: { type: String },
       state: { type: String },
       postalCode: { type: String },
     },
-    additionalInfo: { type: String },
   },
   { timestamps: true }
 );

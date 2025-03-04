@@ -24,6 +24,7 @@ const notificationRoutes = require('./routes/notification');
 const paymentRoutes = require('./routes/payment');
 const reviewRoutes = require('./routes/review');
 const couponRoutes = require('./routes/coupon');
+const dashboardRoutes = require('./routes/dashboard');
 
 
 
@@ -67,7 +68,7 @@ app.use('/notification', notificationRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/coupons', couponRoutes);
-
+app.use('/dashboard', dashboardRoutes);
 
 
 

@@ -5,7 +5,7 @@ const authorizeRoles = require("../middleware/authrole");
 const Notification = require("../models/Notification");
 const Employee = require("../models/Employee");
 
-// ✅ Send Notification
+//  Send Notification
 router.post("/send", authenticateToken, async (req, res) => {
   try {
     const { message, recipientType, employeeId } = req.body;
@@ -48,7 +48,7 @@ router.post("/send", authenticateToken, async (req, res) => {
   }
 });
 
-// ✅ Get All Notifications (Admin sees all, Employees see theirs)
+// Get All Notifications (Admin sees all, Employees see theirs)
 router.get("/all", authenticateToken, async (req, res) => {
   try {
     let query = { receiver: req.user.id };
@@ -71,7 +71,7 @@ router.get("/all", authenticateToken, async (req, res) => {
   }
 });
 
-// ✅ Delete Notification (Admin Only)
+// Delete Notification (Admin Only)
 router.delete("/:id", authenticateToken, authorizeRoles("admin"), async (req, res) => {
   try {
     const notification = await Notification.findById(req.params.id);
