@@ -67,7 +67,7 @@ app.use('/activity', activityRoutes);
 app.use('/notification', notificationRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/reviews', reviewRoutes);
-app.use('/coupons', couponRoutes);
+app.use('/coupon', couponRoutes);
 app.use('/dashboard', dashboardRoutes);
 
 
